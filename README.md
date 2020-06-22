@@ -1,7 +1,6 @@
 # STEP Projects Repo Weeks 2-5
 
-This repo contains the projects I've worked on for the first 5 weeks of STEP.
-This work is based on the [Google Software Product Sprint](https://g.co/softwareproductsprint) program.
+This repo contains Baelul's portfolio and STEP projects.
 link ex: [a link](https://github.com/user/repo/blob/branch/other_file.md)
 ## Week 2
 **Project 1**
