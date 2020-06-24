@@ -51,10 +51,11 @@
     font-weight: bold;
 }
 
-img {
+#sideintro img {
   width: 50%;
   height: auto;
 }
+
  .intro {
      line-height: 2;
  }
