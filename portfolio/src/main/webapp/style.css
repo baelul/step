@@ -1,16 +1,26 @@
 #content {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Lato', sans-serif;
   margin-left: 475px;
   margin-right: auto;
+  margin-top: 75px;
   width: 700px;
   background-color: white;
-  border: 20px solid pink;
+  border: 10px double #abcdef;
   padding: 75px;
+  line-height: 1.5;
+}
+
+#content a {
+    color: #818181;
+}
+
+#content a:hover {
+    color: #f1f1f1;
 }
 
 #sideintro {
   font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Lato', sans-serif;
   margin-left: 125px;
   margin-right: 50px;
   width: 300px; 
@@ -20,16 +30,25 @@
   left: 0;
   background-color: white;
   overflow-x: scroll; 
-  padding-top: 20px;
+  overflow-y: scroll;
+  padding-top: 5px;
 }
 
 #sideintro a {
   font-size: 14px;
   color: #818181;
+  text-align: center;
 }
 
 #sideintro a:hover {
   color: #f1f1f1;
+}
+
+#sideintro h3 {
+    text-align: center;
+    color: #abcdef;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 img {
