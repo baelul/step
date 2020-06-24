@@ -1,6 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: "Lato", sans-serif;
+            }
 
-<div id="mySidebar" class="sidebar">
-    <a href="index.html">Home</a>
-    <a href="https://www.linkedin.com/in/baelul-haile-4731b5190">Linkedin</a>
-    <a href="https://github.com/baelul">GitHub</a>
-</div>
+            .sidebar {
+                font-size: 14px;
+                font-family: 'Lato', sans-serif;
+                margin-left: 125px;
+                margin-right: 50px;
+                width: 300px; 
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background-color: white;
+                overflow-x: scroll; 
+                overflow-y: scroll;
+                padding-top: 5px;
+            }
+
+            .sidebar a {
+            font-size: 14px;
+            color: #818181;
+            text-align: center;
+            }
+
+            .sidebar a:hover {
+            color: #f1f1f1;
+            }
+
+            .sidebar h3 {
+            text-align: center;
+            color: #abcdef;
+            font-size: 30px;
+            font-weight: bold;
+            }
+
+            .sidebar img {
+            width: 50%;
+            height: auto;
+            }
+
+            .intro {
+            line-height: 2;
+            }
+
+            .center {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="sidebarintro" class="sidebar">
+            <h3>Baelul Haile</h3>
+            <p class="center">
+                <img src= "/images/me.jpeg" alt="Me!">
+            </p>
+            <p class="intro">
+            Hello! My name is Baelul Haile. I am a sophomore at the 
+            New York University's Tandon School of Engineering in Brooklyn, 
+            New York. I am majoring in Computer Science, and plan on minoring in
+            both Cybersecurity and Integrated Digital Media. I am currently a 
+            STEP intern based in Mountain View, California, but due to COVID-19, 
+            I am working from home in Laurel, Maryland. 
+            <br>
+            I have worked on a couple projects in the past, but the ones I have
+            and will do during the STEP program will be the first official (professional)
+            projects I will have done. To learn more about the projects I've done, 
+            <a href="projects.html">click here.</a>
+            <br>
+            <a href="index.html">Home</a>
+            <a href="https://www.linkedin.com/in/baelul-haile-4731b5190">Linkedin</a>
+            <a href="https://github.com/baelul">GitHub</a></p>
+        </div>   
+    </body>
+</html> 
