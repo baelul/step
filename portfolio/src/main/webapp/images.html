@@ -5,9 +5,15 @@
     <title>Images</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
-    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script> 
+      $(function(){
+      $("#sidebar").load("sidebar.html"); 
+      });
+    </script> 
   </head>
   <body>
+    <div id="sidebar"></div>
     <div id="content">
       <p>
         <h3>Images</h3>
