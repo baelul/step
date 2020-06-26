@@ -11,11 +11,17 @@
 }
 
 #content a {
-    color: #818181;
+  color: #818181;
 }
 
 #content a:hover {
-    color: #f1f1f1;
+  color: #f1f1f1;
+}
+
+#content h3 {
+  font-family: 'Bebas Neue';
+  font-size: 30px;
+  color: #abcdef;
 }
 
 #sideintro {
@@ -44,11 +50,12 @@
   color: #f1f1f1;
 }
 
-#sideintro h3 {
-    text-align: center;
-    color: #abcdef;
-    font-size: 30px;
-    font-weight: bold;
+#sideintro h1 {
+  font-family: 'Bebas Neue';
+  text-align: center;
+  color: #abcdef;
+  font-size: 50px;
+  font-weight: bold;
 }
 
 #sideintro img {
@@ -56,8 +63,8 @@
   height: auto;
 }
 
- .intro {
-     line-height: 2;
+.intro {
+  line-height: 2;
  }
 
 .center {
@@ -79,4 +86,25 @@
 .column img {
   margin-top: 8px;
   vertical-align: middle;
+}
+
+.photography,
+.images,
+.facts {
+  width: 33.33%;
+  float: left;
+  height: 100px;
+
+}
+
+.talent,
+.project {
+  width: 50%;
+  float: left;
+  height: 100px;
+}
+
+#link img{
+  width: 20%;
+  height: auto;
 }
