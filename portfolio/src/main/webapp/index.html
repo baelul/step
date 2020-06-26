@@ -2,17 +2,31 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Baelul's Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script> 
+      $(function(){
+      $("#sidebar").load("sidebar.html"); 
+      });
+    </script> 
   </head>
   <body>
+    <div id="sidebar"></div>
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+      <p>
+        <h3>Home</h3>
+        Welcome to my portfolio!<br>
+        <img src="/images/hello.gif" alt="Hello!"><br>
+        To navigate to other posts and pages,
+        use the links provided below.<br>
+        <a href="photography.html">Photography</a>
+        <a href="images.html">Image Gallery</a>
+        <a href="fun-facts.html">Fun Facts</a>
+        <a href="hidden-talent.html">Hidden Talent</a><br>
+        <a href="sidebar.html">Isolated Sidebar(WIP)</a>
+      </p>
     </div>
   </body>
 </html>
