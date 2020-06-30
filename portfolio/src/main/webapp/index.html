@@ -7,6 +7,7 @@
     <link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="script.js"></script>
     <script> 
       $(function(){
       $("#sidebar").load("sidebar.html"); 
@@ -20,8 +21,9 @@
         <h3>Home</h3>
         Welcome to my portfolio!<br>
         <img src="/images/hello.gif" alt="Hello!"><br>
-        To navigate to other posts and pages,
-        use the links provided below.<br><br>
+        <button onclick="fetchMessage()">Get a message!</button>
+        <div id="message-container"></div><br>
+        To navigate to other posts and pages, use the links provided below.<br><br>
         <div class="center" id="link">
           <div class="photography">
             <img src="/images/camera.jpg" alt="camera" width="20%"><br>
