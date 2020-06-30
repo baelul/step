@@ -13,7 +13,22 @@
 // limitations under the License.
 
 function fetchMessage() {
-  fetch('/data').then(response => response.text()).then((message) => {
-    document.getElementById('message-container').innerText = message;
+  fetch('/data').then(response => response.json()).then((message) => {
+
+      const messageElem = document.getElementById('message-container');
+        messageElem.innerHTML = '';
+        messageElem.appendChild(
+            createListElement('Message 1: ' + message.message1));
+        messageElem.appendChild(
+            createListElement('Message 2: ' + message.message2));
+        messageElem.appendChild(
+            createListElement('Message 3: ' + message.message3));
   });
 }
+
+function createListElement(txt) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
+
