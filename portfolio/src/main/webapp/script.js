@@ -12,23 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function fetchMessage() {
-  fetch('/data').then(response => response.json()).then((message) => {
-
-      const messageElem = document.getElementById('message-container');
-        messageElem.innerHTML = '';
-        messageElem.appendChild(
-            createListElement('Message 1: ' + message.message1));
-        messageElem.appendChild(
-            createListElement('Message 2: ' + message.message2));
-        messageElem.appendChild(
-            createListElement('Message 3: ' + message.message3));
+function getMessages() {
+  fetch('/data') 
+  .then(response => response.json())
+  .then((message) => { 
+    console.log(message.message1);
+    console.log(message.message2);
+    console.log(message.message3);
+    var randMessage = randomMessage([message.message1, message.message2, message.message3]);
+  document.getElementById('message-container').innerHTML = randMessage;
   });
 }
 
-function createListElement(txt) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+function randomMessage(messagesList) {
+    var randInd = Math.floor(Math.random() * 3);
+    return messagesList[randInd];
 }
-

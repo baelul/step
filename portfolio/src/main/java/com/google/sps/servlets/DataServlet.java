@@ -28,12 +28,12 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     ArrayList<String> messageList = new ArrayList<String>();
-    messageList.add("Have a great day!");
-    messageList.add("Welcome to this page!");
-    messageList.add("How are you?");
+    messageList.add("Hello!");
+    messageList.add("Welcome to my portfolio!");
+    messageList.add("Hi, my name is Baelul.");
   
     String json = convertToJson(messageList);
-    response.setContentType("/data");
+    response.setContentType("application/json");
     response.getWriter().println(json);
   }
 
@@ -46,7 +46,7 @@ public class DataServlet extends HttpServlet {
     json += "\"" + messageList.get(1) + "\"";
     json += ", ";
     json += "\"message3\": ";
-    json += messageList.get(2);
+    json += "\"" + messageList.get(2) + "\"";
     json += "}";
     return json;
   }
