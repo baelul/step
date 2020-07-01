@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Comments</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script> 
+      $(function(){
+      $("#sidebar").load("sidebar.html"); 
+      });
+    </script> 
+  </head>
+  <body>
+    <div id="sidebar"></div>
+    <div id="content">
+      <h3>Comments</h3>
+      <form method="POST">
+          Have anything you want to say? Comment down below!<br>
+          <textarea rows="5" cols="60" name="comment">Comment here...</textarea><br>
+          <input type="submit" value="Submit">
+      </form> 
+    </div>
+  </body>
+</html>

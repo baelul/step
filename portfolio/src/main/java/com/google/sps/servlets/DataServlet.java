@@ -37,6 +37,11 @@ public class DataServlet extends HttpServlet {
     response.getWriter().println(json);
   }
 
+  @Ovverride
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+      
+  }
+
   private String convertToJson(ArrayList<String> messageList) {
     String json = "{";
     json += "\"message1\": ";
