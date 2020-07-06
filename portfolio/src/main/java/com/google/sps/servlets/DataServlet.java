@@ -25,33 +25,32 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private ArrayList<String> commentList = new ArrayList<String>();
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    ArrayList<String> messageList = new ArrayList<String>();
-    messageList.add("Hello!");
-    messageList.add("Welcome to my portfolio!");
-    messageList.add("Hi, my name is Baelul.");
-  
-    String json = convertToJson(messageList);
+    String json = convertToJson(commentList);
     response.setContentType("application/json");
     response.getWriter().println(json);
   }
 
-  @Ovverride
+  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      
+      String comment = request.getParameter("comment");
+      commentList.add(comment);
+      response.setContentType("text/html;");
+      response.getWriter().println(comment);
   }
 
-  private String convertToJson(ArrayList<String> messageList) {
+  private String convertToJson(ArrayList<String> commentList) {
     String json = "{";
-    json += "\"message1\": ";
-    json += "\"" + messageList.get(0) + "\"";
-    json += ", ";
-    json += "\"message2\": ";
-    json += "\"" + messageList.get(1) + "\"";
-    json += ", ";
-    json += "\"message3\": ";
-    json += "\"" + messageList.get(2) + "\"";
+    for (int i = 0; i < commentList.size(); i++) {
+      // each element given the name of the index
+      String indStr = String.valueOf(i);
+      json += indStr + ": ";
+      json += "\"" + commentList.get(i) + "\"";
+      json += ", ";
+    }
     json += "}";
     return json;
   }

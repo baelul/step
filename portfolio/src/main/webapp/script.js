@@ -16,9 +16,6 @@ function getMessages() {
   fetch('/data') 
   .then(response => response.json())
   .then((message) => { 
-    console.log(message.message1);
-    console.log(message.message2);
-    console.log(message.message3);
     var randMessage = randomMessage([message.message1, message.message2, message.message3]);
   document.getElementById('message-container').innerHTML = randMessage;
   });
