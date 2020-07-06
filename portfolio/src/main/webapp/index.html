@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script> 
       $(function(){
       $("#sidebar").load("sidebar.html"); 
@@ -21,8 +21,6 @@
         <h3>Home</h3>
         Welcome to my portfolio!<br>
         <img src="/images/hello.gif" alt="Hello!"><br>
-        <button onclick="fetchMessage()">Get a message!</button>
-        <div id="message-container"></div><br>
         To navigate to other posts and pages, use the links provided below.<br><br>
         <div class="center" id="link">
           <div class="photography">
@@ -46,11 +44,16 @@
           </div>
 
           <div class="project">
-            <img src="/images/laptop.jpg" alt="laptop" width="15%"><br>
+            <img src="/images/laptop.jpg" alt="laptop" width="20%"><br>
             <a href="projects.html">Past Projects</a>
           </div>
+
+          <div class="comment">
+            <img src="/images/speech-bubble.jpg" alt="speech bubble" width="7%"><br>
+            <a href="comments.html">Comments</a>
+          </div>   
         </div>
-        <br><br><br><br><br><br><br>
+        <br>
       </p>
     </div>
   </body>

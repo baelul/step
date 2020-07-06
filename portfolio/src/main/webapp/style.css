@@ -99,12 +99,11 @@
 
 .talent,
 .project {
-  width: 50%;
+  width: 33.33%;
   float: left;
   height: 100px;
 }
 
 #link img{
-  width: 20%;
   height: auto;
 }
