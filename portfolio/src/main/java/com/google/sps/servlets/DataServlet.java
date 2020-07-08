@@ -20,6 +20,8 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.sps.data.Comment;
 import com.google.gson.Gson;
 import java.util.ArrayList;
@@ -45,8 +47,9 @@ public class DataServlet extends HttpServlet {
       long id = entity.getKey().getId();
       String body = (String) entity.getProperty("body");
       long timestamp = (long) entity.getProperty("timestamp");
+      String blobstoreUrl = (String) entity.getProperty("blobstoreUrl");
 
-      Comment comment = new Comment(id, body, timestamp);
+      Comment comment = new Comment(id, body, timestamp, blobstoreUrl);
       comments.add(comment);
     }
 
@@ -55,17 +58,19 @@ public class DataServlet extends HttpServlet {
     response.setContentType("application/json");
     response.getWriter().println(gson.toJson(comments));
   }
-
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String body = request.getParameter("comment");
-      long timestamp = System.currentTimeMillis();
+    String body = request.getParameter("comment");
+    long timestamp = System.currentTimeMillis();
+    String blobstoreUrl = request.getParameter("image");
 
-      Entity commentEntity = new Entity("Comment");
-      commentEntity.setProperty("body", body);
-      commentEntity.setProperty("timestamp", timestamp);
-      datastore.put(commentEntity);
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("body", body);
+    commentEntity.setProperty("timestamp", timestamp);
+    commentEntity.setProperty("blobstoreUrl", blobstoreUrl);
+    datastore.put(commentEntity);
 
-      response.sendRedirect("/comments.html");
+    response.sendRedirect("/comments.html");
   }
+
 }

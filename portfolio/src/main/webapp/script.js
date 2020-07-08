@@ -13,21 +13,44 @@
 // limitations under the License.
 
 function getComments() {
-  fetch('/data') .then(response => response.json()).then((comments) => { 
+  fetch('/data').then(response => response.json()).then((comments) => { 
     const commentListElem = document.getElementById('message-container');
     comments.forEach((comment) => {
-        commentListElem.appendChild(createCommentElem(comment));
+        const Url = fetchBlobstoreUrl();
+        commentListElem.appendChild(createCommentElem(comment, Url));
     })
   });
 }
 
-function createCommentElem(comment) {
+function createCommentElem(comment, Url) {
   const commentElem = document.createElement('li');
   commentElem.className = 'comment';
 
-  const bodyElem =document.createElement('span');
+  const imgElem = document.createElement('img');
+  imgElem.src = Url;
+  imgElem.innerText = comment.body;
+
+  const bodyElem = document.createElement('span');
   bodyElem.innerText = comment.body;
 
   commentElem.appendChild(bodyElem);
   return commentElem;
+}
+
+function toggleData() {
+  var content = document.getElementById("message-container");
+  if (content.style.display === "none") {
+    content.style.display = "block";
+  } else {
+    content.style.display = "none";
+  }
+}
+
+function fetchBlobstoreUrl() {
+  fetch('/blobstore-url').then((response) => {
+      return response.text();
+  }).then((imageUploadUrl) => {
+      const commentForm = document.getElementById('comment-form');
+      commentForm.action = imageUploadUrl;
+  });
 }

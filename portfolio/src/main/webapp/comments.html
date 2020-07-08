@@ -18,14 +18,16 @@
     <div id="sidebar"></div>
     <div id="content">
       <h3>Comments</h3>
-      <form method="POST" action="/data">
+      <form id="comment-form" method="POST" action="/data">
           Have anything you want to say? Comment down below!<br>
-          <textarea rows="5" cols="60" name="comment">Comment here...</textarea><br>
+          <textarea name="comment"></textarea><br>
+          Upload an image:
+          <input type="file" name="image"><br>
           <input type="submit" value="Submit" />
       </form> 
+      <br>
       <button onclick="getComments()">See other comments</button>
       <ul id="message-container"></ul>
-
     </div>
   </body>
 </html>
