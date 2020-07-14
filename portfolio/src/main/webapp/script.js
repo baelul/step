@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/*
+
 function getComments() {
   fetch('/data') .then(response => response.json()).then((comments) => { 
     const commentListElem = document.getElementById('message-container');
@@ -21,18 +21,14 @@ function getComments() {
     })
   });
 }
-
 function createCommentElem(comment) {
   const commentElem = document.createElement('li');
   commentElem.className = 'comment';
-
   const bodyElem =document.createElement('span');
   bodyElem.innerText = comment.body;
-
   commentElem.appendChild(bodyElem);
   return commentElem;
 }
-*/
 
 function fetchFormData() {
     fetch('/data').then((response) => {

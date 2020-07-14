@@ -34,7 +34,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /** Servlet that handles comments data */
 
-
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
@@ -43,6 +42,10 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
     String uploadUrl = blobstoreService.createUploadUrl("/comment-handler");
+
+    System.out.println(uploadUrl);
+    System.out.println("------");
+
 
     Query query = new Query("Comment").addSort("time", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
@@ -53,6 +56,7 @@ public class DataServlet extends HttpServlet {
       String body = (String) entity.getProperty("comment");
       long time = (long) entity.getProperty("time");
       String imageUrl = (String) entity.getProperty("imageUrl");
+      System.out.println(imageUrl);
 
       Comment comment = new Comment(id, body, time, imageUrl);
       comments.add(comment);
