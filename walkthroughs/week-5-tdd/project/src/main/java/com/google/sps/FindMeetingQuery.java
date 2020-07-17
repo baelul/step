@@ -16,6 +16,8 @@ package com.google.sps;
 
 import java.util.Collection;
 
+// class that, given meeting info (time/duration, collection of attendees), will return times the meeting
+// can take place
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     throw new UnsupportedOperationException("TODO: Implement this method.");

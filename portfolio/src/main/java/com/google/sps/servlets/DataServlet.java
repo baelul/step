@@ -16,12 +16,12 @@ package com.google.sps.servlets;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.appengine.api.blobstore.BlobstoreService;
-import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.sps.data.Comment;
 import com.google.gson.Gson;
 import java.util.ArrayList;
@@ -31,34 +31,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /** Servlet that handles comments data */
-
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-    String uploadUrl = blobstoreService.createUploadUrl("/comment-handler");
-
-    System.out.println(uploadUrl);
-    System.out.println("------");
-
-
-    Query query = new Query("Comment").addSort("time", SortDirection.DESCENDING);
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
 
     ArrayList<Comment> comments = new ArrayList();
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
-      String body = (String) entity.getProperty("comment");
-      long time = (long) entity.getProperty("time");
-      String imageUrl = (String) entity.getProperty("imageUrl");
-      System.out.println(imageUrl);
+      String body = (String) entity.getProperty("body");
+      long timestamp = (long) entity.getProperty("timestamp");
 
-      Comment comment = new Comment(id, body, time, imageUrl);
+      Comment comment = new Comment(id, body, timestamp);
       comments.add(comment);
     }
 
@@ -66,5 +56,18 @@ public class DataServlet extends HttpServlet {
 
     response.setContentType("application/json");
     response.getWriter().println(gson.toJson(comments));
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+      String body = request.getParameter("comment");
+      long timestamp = System.currentTimeMillis();
+
+      Entity commentEntity = new Entity("Comment");
+      commentEntity.setProperty("body", body);
+      commentEntity.setProperty("timestamp", timestamp);
+      datastore.put(commentEntity);
+
+      response.sendRedirect("/comments.html");
   }
 }

@@ -1,3 +1,5 @@
+package com.google.sps.servlets;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -28,51 +30,37 @@ import java.util.Map;
 @WebServlet("/comment-handler")
 public class CommentHandler extends HttpServlet {
 
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
-      String comment = request.getParameter("comment");
-      long time = System.currentTimeMillis(); 
-      String imageUrl = getUploadedFileUrl(request, "image");
-
-      Entity commentEntity = new Entity("Comments");
-      commentEntity.setProperty("comment", comment);
-      commentEntity.setProperty("time", time);
-      commentEntity.setProperty("imageUrl", imageUrl);
-
-      datastore.put(commentEntity);
-
-      response.sendRedirect("/comments.html");
+    @Override
+    public void doPost(HttpServletRequest request. HttpServletResponse response) throws IOException {
+        String imageUrl = getUploadedFileUrl(request, "image");
     }
 
-    /** Returns a URL that points to the uploaded file, or null if the user didn't upload a file. */
-  private String getUploadedFileUrl(HttpServletRequest request, String formInputElementName) {
-    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-    Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
-    List<BlobKey> blobKeys = blobs.get(formInputElementName);
+    private String getUploadedFileUrl(HttpServletRequest request, String formInputElementName) {
+        BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+        Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
+        List<BlobKey> blobKeys = blobs.get(formInputElementName);
 
-    // User submitted form without selecting a file, so we can't get a URL. (dev server)
-    if (blobKeys == null || blobKeys.isEmpty()) {
-      return null;
-    }
-    BlobKey blobKey = blobKeys.get(0);
+        if (blobKeys == null || blobKeys.isEmpty()) {
+        return null;
+        }
 
-    // User submitted form without selecting a file, so we can't get a URL. (live server)
-    BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
-    if (blobInfo.getSize() == 0) {
-      blobstoreService.delete(blobKey);
-      return null;
-    }
+        BlobKey blobKey = blobKeys.get(0);
 
-    ImagesService imagesService = ImagesServiceFactory.getImagesService();
-    ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);
+        BlobInfo blobInfo = new BlobInfoFactory().loadBlobInfo(blobKey);
+        if (blobInfo.getSize() == 0) {
+        blobstoreService.delete(blobKey);
+        return null;
+        }
 
-    try {
-      URL url = new URL(imagesService.getServingUrl(options));
-      return url.getPath();
-    } catch (MalformedURLException e) {
-      return imagesService.getServingUrl(options);
-    }
+        ImagesService imagesService = ImagesServiceFactory.getImagesService();
+        ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);
+
+        try {
+        URL url = new URL(imagesService.getServingUrl(options));
+        return url.getPath();
+        } catch (MalformedURLException e) {
+        return imagesService.getServingUrl(options);
+        }
   }
 }
+

@@ -14,17 +14,18 @@
       });
     </script> 
   </head>
-  <body onload="fetchFormData()">
+  <body onload="getComments()">
     <div id="sidebar"></div>
     <div id="content">
       <h3>Comments</h3>
-      <form id="comment-form" method="POST" enctype="multipart/form-data">
+      <form method="POST" action="/data">
           Have anything you want to say? Comment down below!<br>
           <textarea name="comment"></textarea><br>
-          <input name="image" type="file">
-          <button>Submit</button>
+          Upload an image:
+          <input type="file" name="image"><br>
+          <input type="submit" value="Submit" /><br>
       </form> 
-      <button>See other comments</button>
+      <button onclick="toggleDisplay()">See other comments</button>
       <ul id="message-container"></ul>
 
     </div>

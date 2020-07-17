@@ -16,26 +16,30 @@
 function getComments() {
   fetch('/data') .then(response => response.json()).then((comments) => { 
     const commentListElem = document.getElementById('message-container');
+    commentListElem.style.display = "none";
     comments.forEach((comment) => {
         commentListElem.appendChild(createCommentElem(comment));
     })
   });
 }
+
 function createCommentElem(comment) {
   const commentElem = document.createElement('li');
   commentElem.className = 'comment';
+
   const bodyElem =document.createElement('span');
   bodyElem.innerText = comment.body;
+
   commentElem.appendChild(bodyElem);
   return commentElem;
 }
 
-function fetchFormData() {
-    fetch('/data').then((response) => {
-        return response.text();
-    })
-    .then((imageUploadUrl) => {
-        const commentForm = document.getElementById('comment-form');
-        commentForm.action = imageUploadUrl;
-    })
+function toggleDisplay() {
+    var elem = document.getElementById("message-container");
+    if (elem.style.display === "none") {
+        elem.style.display = "block";
+    }
+    else {
+        elem.style.display = "none";
+    }
 }
